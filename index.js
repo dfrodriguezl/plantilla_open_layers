@@ -7,8 +7,14 @@ import MVT from 'ol/format/MVT';
 import {Stroke,Style} from 'ol/style/Style';
 import {fromLonLat} from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
+import TileWMS from 'ol/source/TileWMS';
 
 const key = 'lirfd6Fegsjkvs0lshxe'; // use your own instead
+
+const view = new View({
+  center: fromLonLat([-74, 4]),
+  zoom: 6
+});
 
 const map = new Map({
     target: 'map',
@@ -17,8 +23,7 @@ const map = new Map({
               source: new OSM()
             })
           ],
-    view: new View({
-      center: fromLonLat([-74, 4]),
-      zoom: 6
-    })
+    view: view
   });
+
+// Add WMS departamentos
