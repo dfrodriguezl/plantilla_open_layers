@@ -25,5 +25,3 @@ const map = new Map({
           ],
     view: view
   });
-
-// Add WMS departamentos
