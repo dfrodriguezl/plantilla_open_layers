@@ -2,7 +2,8 @@
 
 Prueba open layers
 Se debe agregar la capa de departamentos del DANE DIVIPOLA desde el servicio WMS: https://geoserverportal.dane.gov.co/geoserver2/postgis/wms, 
-la capa postgis:V2018_MGN_DPTO_POLITICO
+la capa postgis:V2018_MGN_DPTO_POLITICO, agregar popup a la capa para ver la información de departamento.
+
 
 # Pasos
 1. Clonar repositorio
