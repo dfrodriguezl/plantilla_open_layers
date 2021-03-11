@@ -25,7 +25,7 @@ Se debe contar con Node JS instalada en el PC (https://nodejs.org/en/)
 # Prueba
 Como parte de la prueba web, se debe hacer lo siguiente:
 1. Agregar 3 mapas base y darle funcionamiento en la barra de herramientas, puede acceder a algunos mapas base de OSM en https://wiki.openstreetmap.org/wiki/Tile_servers
-2. Agregar la capas de departamentos (postgis:V2018_MGN_DPTO_POLITICO), municipios (postgis:V2018_MGN_MPIO_POLITICO) y centros poblados (postgis:V2018_MGN_CLASE) desde el servicio swe geográfico WMS desde https://geoserverportal.dane.gov.co/geoserver2/postgis/wms
+2. Agregar la capas de departamentos (postgis:V2018_MGN_DPTO_POLITICO), municipios (postgis:V2018_MGN_MPIO_POLITICO) y centros poblados (postgis:V2018_MGN_URB_AREA_CENSAL) desde el servicio swe geográfico WMS desde https://geoserverportal.dane.gov.co/geoserver2/postgis/wms
 3. Agregar funcionalidad en la sección de capas para prender/apagar capas (departamentos, municipios)
 4. Agregar check y texto de centros poblados en la sección de capas
 5. Cuando seleccione un departamento de la lista, resalte el departamento sobre el mapa (Borde color cyan)
