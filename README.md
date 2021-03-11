@@ -30,7 +30,7 @@ Como parte de la prueba web, se debe hacer lo siguiente:
 4. Agregar check y texto de centros poblados en la sección de capas
 5. Cuando seleccione un departamento de la lista, resalte el departamento sobre el mapa (Borde color cyan)
 6. Agregar popups para municipios, departamentos y centros poblados (Código DIVIPOLA y nombre)
-7. Generar tabla con lista de centros poblados una vez se seleccione/cambie municipio (La información de centros poblados se puede consumir desde https://geoportal.dane.gov.co/laboratorio/serviciosjson/mgn/divipola.php?codigo_departamento=05&codigo_municipio=001&clase=2), donde se va variando los valores del código de departamento y municipio. La tabla de contener el código DIVIPOLA y nombre del centro poblado.
+7. Generar tabla con lista de centros poblados una vez se seleccione/cambie municipio (La información de centros poblados se puede consumir desde https://geoportal.dane.gov.co/laboratorio/serviciosjson/mgn/divipola.php?codigo_departamento=05&codigo_municipio=001&clase=2), donde se va variando los valores del código de departamento y municipio. La tabla de contener el código DIVIPOLA y nombre del centro poblado. En las librerias asociadas al proyecto hay una denominada Tabulator, esta es la que debe ser utilizada.
 
 Se debe subir el código (push) a la rama creada previamente e indicar que se terminó.
 
