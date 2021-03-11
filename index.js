@@ -11,6 +11,11 @@ import TileWMS from 'ol/source/TileWMS';
 
 const key = 'lirfd6Fegsjkvs0lshxe'; // use your own instead
 
+let selectDeptos = document.getElementById("departamento");
+let selectMpios = document.getElementById("municipio");
+let urlDeptos = 'https://geoportal.dane.gov.co/laboratorio/serviciosjson/mgn/divipola.php';
+let urlMpios = 'https://geoportal.dane.gov.co/laboratorio/serviciosjson/mgn/divipola.php?codigo_departamento='
+
 const view = new View({
   center: fromLonLat([-74, 4]),
   zoom: 6
@@ -26,63 +31,54 @@ const map = new Map({
     view: view
   });
 
-// Add WMS departamentos
+loadDeptos();
 
-let wms_source = new TileWMS({
-  url: 'https://geoserverportal.dane.gov.co/geoserver2/postgis/wms',
-  params: {'LAYERS': 'postgis:V2018_MGN_DPTO_POLITICO','CRS':'EPSG:4326'},
-  serverType: 'geoserver',
-  // Countries have transparency, so do not fade tiles:
-  crossOrigin: 'anonymous'
-});
+selectDeptos.addEventListener("change", (e) => {
+  loadMpios(e.target.value);
+})
 
-let deptosLyr = new TileLayer({
-    source: wms_source,
-});
 
-map.addLayer(deptosLyr);
 
-// activar casilla departamento
-
-let elemento = document.getElementById("check6");
-elemento.checked = true;
-
-elemento.addEventListener('click',function(e){
-  let check = e.target.checked;
-  if(check){
-    map.addLayer(deptosLyr);
-  }else{
-    map.removeLayer(deptosLyr);
-  }
-});
-
-// activar getInfo en info div
-
-map.on('singleclick', function (evt) {
-  document.getElementById('info').innerHTML = '';
-  var viewResolution = /** @type {number} */ (view.getResolution());
-  var url = wms_source.getFeatureInfoUrl(
-    evt.coordinate,
-    viewResolution,
-    'EPSG:3857',
-    {'INFO_FORMAT': 'text/html'}
-  );
-  if (url) {
-    fetch(url)
-      .then(function (response) { return response.text(); })
+function loadDeptos() {
+  fetch(urlDeptos)
+      .then(function (response) { 
+        // console.log(response.text());
+        return response.json(); })
       .then(function (html) {
-        document.getElementById('info').innerHTML = html;
-      });
-  }
-});
+        // console.log(html.estado);
+        if(html.estado){
+          let deptos = html.resultado;
 
-map.on('pointermove', function (evt) {
-  if (evt.dragging) {
-    return;
-  }
-  var pixel = map.getEventPixel(evt.originalEvent);
-  var hit = map.forEachLayerAtPixel(pixel, function () {
-    return true;
-  });
-  map.getTargetElement().style.cursor = hit ? 'pointer' : '';
-});
+          deptos.forEach((value,index) => {
+            console.log(value);
+            var option = document.createElement("option");
+            option.text = value.DPTO_CNMBR;
+            option.value = value.DPTO_CCDGO;
+            selectDeptos.appendChild(option);
+          });
+        }
+      });
+}
+
+
+function loadMpios(depto){
+  selectMpios.options.length = 0;
+  fetch(urlMpios + depto)
+      .then(function (response) { 
+        // console.log(response.text());
+        return response.json(); })
+      .then(function (html) {
+        // console.log(html.estado);
+        if(html.estado){
+          let mpios = html.resultado;
+
+          mpios.forEach((value,index) => {
+            console.log(value);
+            var option = document.createElement("option");
+            option.text = value.MPIO_CNMBR;
+            option.value = value.DPTO_CCDGO;
+            selectMpios.appendChild(option);
+          });
+        }
+      });
+}
