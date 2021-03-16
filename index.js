@@ -82,3 +82,47 @@ function loadMpios(depto){
         }
       });
 }
+function BaseMap(){
+  const map= new ol.Map({
+    view: new ol.View({
+      center:[-74.0817500, 4.6097100],
+      zoom:7,
+      maxZoom:10,
+      minZoom:4,
+      rotation:0.5
+    })
+    tarjet:'grupo-base'
+  })
+  //Base Maps
+    const OSMHumanitarian= new ol.layer.Tile({
+      source:new ol.source.OSM({
+        url:'http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png'
+      }),
+      visible: false,
+      title:'OSMHumanitarian'
+    })
+
+    const OpenStreetMap= new ol.layer.Tile({
+      source:new ol.source.OPM({
+        url:'https://a.tile.openstreetmap.org/${z}/${x}/${y}.png '
+      }),
+      visible: true,
+      title:'OpenStreetMap'
+    })
+
+    const MapTiler Basic= new ol.layer.Tile({
+      source:new ol.source.MTB({
+        url:'https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png '
+      }),
+      visible: false,
+      title:'MapTiler Basic'
+    })
+
+    //Layer Group
+    const baseLayerGroup= new ol.layer.Group({
+      layers:[
+          OSMHumanitarian,OpenStreetMap,MapTiler Basic
+      ]
+    })
+    map.addLayer(baseLayerGroup)
+  }
